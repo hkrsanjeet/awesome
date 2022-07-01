@@ -1,0 +1,13 @@
+**Groovy executing shell commands option 1**
+
+def cmd = "cmd.exe /c dir".execute();
+println("${cmd.text}");
+
+------------------------------------------------
+**Groovy executing shell commands option 2**
+
+def sout = new StringBuilder(), serr = new StringBuilder()
+def proc = 'ls /badDir'.execute()
+proc.consumeProcessOutput(sout, serr)
+proc.waitForOrKill(1000)
+println "out> $sout\nerr> $serr"
